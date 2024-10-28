@@ -16,12 +16,11 @@
      </section>    
   
     </main>
-   <script src="js/scripts.js"></script>
-    <script>
-        // Mostrar mensaje de bienvenida al cargar la página
-        window.onload = function() {
-            alert("Gracias por entrar");
-        };
+   <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            console.log("Página cargada correctamente");
+            document.getElementById("titulo").textContent = "Gracias por entrar"; // Cambia el texto del encabezado
+        });
     </script>
 </body>
 </html>
