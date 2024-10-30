@@ -1,18 +1,14 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    color: #333;
-}
-header {
-    background-color: #4CAF55;
-    color: white;
-    padding: 1em;
-    text-align: center;
-}
-main {
-    padding: 1em;
-}
-h2 {
-    color: #4CAF50;
-}
+<style>
+    .feed-item {
+        border-bottom: 1px solid #ccc;
+        padding: 10px 0;
+    }
+    .feed-item h2 {
+        font-size: 1.2em;
+        margin: 0;
+    }
+    .feed-item p {
+        font-size: 0.9em;
+        color: #555;
+    }
+</style>
