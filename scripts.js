@@ -93,3 +93,27 @@ async function loadFeed() {
 // Cargar el feed al cargar la página
 loadFeed();
 
+
+async function fetchTweets() {
+    const tweetsContainer = document.getElementById('tweets');
+    tweetsContainer.innerHTML = '';
+
+    try {
+        const response = await fetch('./tweets.json');
+        const data = await response.json();
+
+        if (data && data.data) {
+            data.data.forEach(tweet => {
+                const tweetElement = document.createElement('p');
+                tweetElement.textContent = tweet.text;
+                tweetsContainer.appendChild(tweetElement);
+            });
+        } else {
+            tweetsContainer.innerHTML = 'No se encontraron tweets.';
+        }
+    } catch (error) {
+        tweetsContainer.innerHTML = 'Error al obtener tweets.';
+    }
+}
+
+window.onload = fetchTweets;
