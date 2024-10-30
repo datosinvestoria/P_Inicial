@@ -33,3 +33,4 @@
                 console.error("Error al cargar el feed:", error);
             }
         }
+loadFeed();
