@@ -16,7 +16,7 @@ async function loadFeed() {
         }
 
         const feedContainer = document.getElementById("feed");
-        const keywords = ["elecciones", "2025", "candidatos", "voto", "elección"]; // Palabras clave
+        const keywords = ["elecciones", "candidatos", "voto", "elección"]; // Palabras clave
 
         // Filtrar los artículos según las palabras clave
         const filteredItems = allItems.filter(item => 
