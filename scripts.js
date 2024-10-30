@@ -1,3 +1,47 @@
+const accessToken = 'EAAWaHSQO6b4BOy404PZBrNgTlQr69KizmNJQ4AZAaxLFSvtIcf0GOPj61IDWQ42wSAqqDt9PAZAVR5C0whMM1bEyioi8PncVenZBabGFca74Eh5pxJz6A7i3iJUVIjT76QOWABR0gmxppLDXZBNR79kpHBiWtv5r5jjdsoPpRawTrXMeN5ZCLkPuspD8ZC0i3c8soyZBGV1TZCtdGmI4ZD'; // Reemplaza con tu token de acceso
+        const query = 'elecciones Ecuador';
+        const url = `https://graph.facebook.com/v14.0/search?q=${encodeURIComponent(query)}&type=post&access_token=${accessToken}`;
+ 
+async function fetchPosts() {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error('Error en la solicitud: ' + response.statusText);
+                }
+                const data = await response.json();
+                displayPosts(data.data);
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        // Función para mostrar las publicaciones en la página
+        function displayPosts(posts) {
+            const postsContainer = document.getElementById('posts');
+            postsContainer.innerHTML = ''; // Limpiar el contenedor
+
+            if (posts && posts.length > 0) {
+                posts.forEach(post => {
+                    const postElement = document.createElement('div');
+                    postElement.className = 'post';
+                    postElement.innerHTML = `
+                        <strong>Post ID:</strong> ${post.id}<br>
+                        <strong>Mensaje:</strong> ${post.message ? post.message : 'No hay mensaje'}<br>
+                        <strong>Fecha:</strong> ${post.created_time}<br>
+                    `;
+                    postsContainer.appendChild(postElement);
+                });
+            } else {
+                postsContainer.innerHTML = '<p>No se encontraron publicaciones.</p>';
+            }
+        }
+
+        // Ejecutar la función al cargar la página
+        fetchPosts();
+
+
+
+
 async function loadFeed() {
     const feedUrls = [
         "https://api.rss2json.com/v1/api.json?rss_url=https://www.elcomercio.com/feed/",
