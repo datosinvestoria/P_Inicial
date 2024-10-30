@@ -17,7 +17,7 @@
             padding: 10px;
             position: fixed;
             top: 0;
-            width: 100%;
+            width: 20%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -30,7 +30,7 @@
         }
 
         .navbar a:hover {
-            background-color: #555;
+            background-color: #0000;
         }
 
         /* Estilo de margen para el contenido para que no quede debajo de la barra */
