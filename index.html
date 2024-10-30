@@ -3,24 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Datos Investoria</title>
-    <link rel="stylesheet" href="estilos.css">
+    <title>Feed de El Comercio</title>
 </head>
 <body>
-    <header>
-        <h1>Bienvenidos</h1>
-    </header>
-    <main>
-    <section id="grafico">
-        <iframe width="600" height="450" src="https://lookerstudio.google.com/embed/reporting/39be3f25-1c42-464f-9963-ac8b1f340e91/page/A" frameborder="0" style="border:0" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
-     </section>    
-  
-    </main>
-   <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            console.log("Página cargada correctamente");
-            document.getElementById("titulo").textContent = "Gracias por entrar"; // Cambia el texto del encabezado
-        });
+    <h1>Últimas Noticias de El Comercio</h1>
+    <div id="feed"></div>
+
+    <script>
+        async function loadFeed() {
+            try {
+                const response = await fetch("https://api.rss2json.com/v1/api.json?rss_url=https://elcomercio.pe/feed/");
+                const data = await response.json();
+
+                // Seleccionar el contenedor para mostrar el feed
+                const feedContainer = document.getElementById("feed");
+                data.items.slice(0, 5).forEach(item => {
+                    // Crear elementos HTML para cada noticia
+                    const itemContainer = document.createElement("div");
+                    itemContainer.className = "feed-item";
+
+                    const title = document.createElement("h2");
+                    title.innerHTML = `<a href="${item.link}" target="_blank">${item.title}</a>`;
+                    itemContainer.appendChild(title);
+
+                    const description = document.createElement("p");
+                    description.textContent = item.description;
+                    itemContainer.appendChild(description);
+
+                    feedContainer.appendChild(itemContainer);
+                });
+            } catch (error) {
+                console.error("Error al cargar el feed:", error);
+            }
+        }
+
+        // Cargar el feed al cargar la página
+        loadFeed();
     </script>
 </body>
 </html>
