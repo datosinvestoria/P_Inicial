@@ -1,0 +1,14 @@
+{
+  "builds": [
+    {
+      "src": "api/trends.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/trending",
+      "dest": "api/trends.py"
+    }
+  ]
+}
