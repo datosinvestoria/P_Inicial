@@ -60,7 +60,7 @@ async function loadFeed() {
         }
 
         const feedContainer = document.getElementById("feed");
-        const keywords = ["crisis","energética","luz","cortes","energía"]; // Palabras clave
+        const keywords = ["crisis","energética","luz","cortes","energía","feriado"]; // Palabras clave
 
         // Filtrar los artículos según las palabras clave
         const filteredItems = allItems.filter(item => 
