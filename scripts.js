@@ -1,6 +1,5 @@
 window.onload = async function() {
     await loadFeed();
-
 };
 
 async function loadFeed() {
