@@ -53,4 +53,36 @@ async function loadFeed() {
 // Cargar el feed al cargar la página
 loadFeed();
 
+const query = 'elecciones';
+
+async function fetchTrendingData() {
+    try {
+        const response = await fetch(`https://your-project-name.vercel.app/trending?query=${query}`);
+        if (!response.ok) {
+            throw new Error('Error al obtener datos');
+        }
+
+        const data = await response.json();
+        displayTrendingData(data);
+    } catch (error) {
+        document.getElementById('trending-results').innerText = 'No se pudieron cargar los resultados de tendencias.';
+        console.error(error);
+    }
+}
+
+function displayTrendingData(data) {
+    const trendingContainer = document.getElementById('trending-results');
+    trendingContainer.innerHTML = '';
+
+    data.forEach((item, index) => {
+        const trendItem = document.createElement('div');
+        trendItem.innerHTML = `<h3>${index + 1}. ${item.title}</h3><p>Interés: ${item.value}</p>`;
+        trendingContainer.appendChild(trendItem);
+    });
+}
+
+// Llamar a la función para obtener los datos.
+fetchTrendingData();
+
+
  
