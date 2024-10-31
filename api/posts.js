@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 
 export default async function handler(req, res) {
     const accessToken = process.env.TOKEN_FACEBOOK; // Obtiene el token de las variables de entorno
-    const query = 'elecciones Ecuador';
+    const query = 'elecciones or energía';
     const url = `https://graph.facebook.com/v14.0/search?q=${encodeURIComponent(query)}&type=post&access_token=${accessToken}`;
 
     try {
