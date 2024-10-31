@@ -57,7 +57,7 @@ const query = 'elecciones';
 
 async function fetchTrendingData() {
     try {
-        const response = await fetch(`https://your-project-name.vercel.app/trending?query=${query}`);
+        const response = await fetch(`https://p-inicial.vercel.app/.app/trending?query=${query}`); //Colocar URL del proyecto en Vercel
         if (!response.ok) {
             throw new Error('Error al obtener datos');
         }
