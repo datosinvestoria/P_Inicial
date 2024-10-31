@@ -55,40 +55,6 @@ async function loadFeed() {
 // Cargar el feed al cargar la página
 loadFeed();
 
- async function fetchPosts() {
-    const url = '/api/posts'; // Llama al endpoint que has creado
-    try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error('Error en la solicitud');
-        const posts = await response.json();
-        displayPosts(posts);
-    } catch (error) {
-        console.error('Error:', error);
-    }
-}
-
-        function displayPosts(posts) {
-            const postsContainer = document.getElementById('posts');
-            postsContainer.innerHTML = '';
-
-            if (posts && posts.length > 0) {
-                posts.forEach(post => {
-                    const postElement = document.createElement('div');
-                    postElement.className = 'post';
-                    postElement.innerHTML = `
-                        <strong>Post ID:</strong> ${post.id}<br>
-                        <strong>Mensaje:</strong> ${post.message ? post.message : 'No hay mensaje'}<br>
-                        <strong>Fecha:</strong> ${post.created_time}<br>
-                    `;
-                    postsContainer.appendChild(postElement);
-                });
-            } else {
-                postsContainer.innerHTML = '<p>No se encontraron publicaciones.</p>';
-            }
-        }
-
-        fetchPosts();
-
 async function fetchTweets() {
     const tweetsContainer = document.getElementById('tweets');
     tweetsContainer.innerHTML = '';
