@@ -1,47 +1,3 @@
-const accessToken = process.env.TOKEN_FACEBOOK; // Reemplaza con tu token de acceso
-        const query = 'elecciones Ecuador';
-        const url = `https://graph.facebook.com/v14.0/search?q=${encodeURIComponent(query)}&type=post&access_token=${accessToken}`;
- 
-async function fetchPosts() {
-            try {
-                const response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error('Error en la solicitud: ' + response.statusText);
-                }
-                const data = await response.json();
-                displayPosts(data.data);
-            } catch (error) {
-                console.error('Error:', error);
-            }
-        }
-
-        // Función para mostrar las publicaciones en la página
-        function displayPosts(posts) {
-            const postsContainer = document.getElementById('posts');
-            postsContainer.innerHTML = ''; // Limpiar el contenedor
-
-            if (posts && posts.length > 0) {
-                posts.forEach(post => {
-                    const postElement = document.createElement('div');
-                    postElement.className = 'post';
-                    postElement.innerHTML = `
-                        <strong>Post ID:</strong> ${post.id}<br>
-                        <strong>Mensaje:</strong> ${post.message ? post.message : 'No hay mensaje'}<br>
-                        <strong>Fecha:</strong> ${post.created_time}<br>
-                    `;
-                    postsContainer.appendChild(postElement);
-                });
-            } else {
-                postsContainer.innerHTML = '<p>No se encontraron publicaciones.</p>';
-            }
-        }
-
-        // Ejecutar la función al cargar la página
-        fetchPosts();
-
-
-
-
 async function loadFeed() {
     const feedUrls = [
         "https://api.rss2json.com/v1/api.json?rss_url=https://www.elcomercio.com/feed/",
@@ -93,6 +49,38 @@ async function loadFeed() {
 // Cargar el feed al cargar la página
 loadFeed();
 
+ async function fetchPosts() {
+            try {
+                const response = await fetch('/api/posts'); // Llamada a tu servidor
+                if (!response.ok) throw new Error('Error en la solicitud');
+                const posts = await response.json();
+                displayPosts(posts);
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        function displayPosts(posts) {
+            const postsContainer = document.getElementById('posts');
+            postsContainer.innerHTML = '';
+
+            if (posts && posts.length > 0) {
+                posts.forEach(post => {
+                    const postElement = document.createElement('div');
+                    postElement.className = 'post';
+                    postElement.innerHTML = `
+                        <strong>Post ID:</strong> ${post.id}<br>
+                        <strong>Mensaje:</strong> ${post.message ? post.message : 'No hay mensaje'}<br>
+                        <strong>Fecha:</strong> ${post.created_time}<br>
+                    `;
+                    postsContainer.appendChild(postElement);
+                });
+            } else {
+                postsContainer.innerHTML = '<p>No se encontraron publicaciones.</p>';
+            }
+        }
+
+        fetchPosts();
 
 async function fetchTweets() {
     const tweetsContainer = document.getElementById('tweets');
