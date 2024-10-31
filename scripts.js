@@ -1,4 +1,4 @@
-const accessToken = TOKE_FACEBOOK; // Reemplaza con tu token de acceso
+const accessToken = process.env.TOKEN_FACEBOOK; // Reemplaza con tu token de acceso
         const query = 'elecciones Ecuador';
         const url = `https://graph.facebook.com/v14.0/search?q=${encodeURIComponent(query)}&type=post&access_token=${accessToken}`;
  
