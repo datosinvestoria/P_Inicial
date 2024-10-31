@@ -1,11 +1,11 @@
-from flask import Flask, jsonify, request
+from fastapi import FastAPI
 from pytrends.request import TrendReq
+from typing import List, Dict
 
-app = Flask(__name__)
+app = FastAPI()
 
-@app.route('/api/trending', methods=['GET'])
-def get_trending():
-    query = request.args.get('query', 'elecciones')
+@app.get("/api/trending")
+async def get_trending(query: str = 'elecciones') -> List[Dict[str, str]]:
     pytrends = TrendReq()
     pytrends.build_payload([query], geo='EC', timeframe='today 1-m')
     trending_data = pytrends.related_queries()[query]['top']
@@ -15,7 +15,4 @@ def get_trending():
         for _, row in trending_data.iterrows()
     ] if trending_data is not None else []
 
-    return jsonify(results)
-
-if __name__ == "__main__":
-    app.run()
+    return results
