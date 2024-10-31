@@ -1,4 +1,5 @@
 {
+  "version": 2,
   "builds": [
     {
       "src": "api/trends.py",
@@ -7,7 +8,7 @@
   ],
   "routes": [
     {
-      "src": "/api/trending",
+      "src": "/api/test",
       "dest": "api/trends.py"
     }
   ]
