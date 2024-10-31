@@ -1,7 +1,6 @@
 window.onload = async function() {
     await loadFeed();
-    await fetchPosts();
-    await fetchTweets();
+
 };
 
 async function loadFeed() {
@@ -55,26 +54,35 @@ async function loadFeed() {
 // Cargar el feed al cargar la página
 loadFeed();
 
-async function fetchTweets() {
-    const tweetsContainer = document.getElementById('tweets');
-    tweetsContainer.innerHTML = '';
-
-    try {
-        const response = await fetch('./tweets.json');
-        const data = await response.json();
-
-        if (data && data.data) {
-            data.data.forEach(tweet => {
-                const tweetElement = document.createElement('p');
-                tweetElement.textContent = tweet.text;
-                tweetsContainer.appendChild(tweetElement);
-            });
-        } else {
-            tweetsContainer.innerHTML = 'No se encontraron tweets.';
+  // Reemplaza 'YOUR_API_KEY' con tu clave de API de Google.
+    const apiKey = 'YOUR_API_KEY';
+    const query = 'elecciones';
+    
+    async function fetchTrendingData() {
+      try {
+        const response = await fetch(https://www.googleapis.com/trends/v1beta/trending?query=${query}&apiKey=${apiKey});
+        if (!response.ok) {
+          throw new Error('Error al obtener datos');
         }
-    } catch (error) {
-        tweetsContainer.innerHTML = 'Error al obtener tweets.';
+        
+        const data = await response.json();
+        displayTrendingData(data);
+      } catch (error) {
+        document.getElementById('trending-results').innerText = 'No se pudieron cargar los resultados de tendencias.';
+        console.error(error);
+      }
     }
-}
 
-window.onload = fetchTweets;
+    function displayTrendingData(data) {
+      const trendingContainer = document.getElementById('trending-results');
+      trendingContainer.innerHTML = '';
+
+      data.forEach((item, index) => {
+        const trendItem = document.createElement('div');
+        trendItem.innerHTML = <h3>${index + 1}. ${item.title}</h3><p>${item.description}</p>;
+        trendingContainer.appendChild(trendItem);
+      });
+    }
+
+    // Llamar a la función para obtener los datos.
+    fetchTrendingData();
