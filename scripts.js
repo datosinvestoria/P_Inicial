@@ -56,15 +56,16 @@ async function loadFeed() {
 loadFeed();
 
  async function fetchPosts() {
-            try {
-                const response = await fetch('/api/posts'); // Llamada a tu servidor
-                if (!response.ok) throw new Error('Error en la solicitud');
-                const posts = await response.json();
-                displayPosts(posts);
-            } catch (error) {
-                console.error('Error:', error);
-            }
-        }
+    const url = '/api/posts'; // Llama al endpoint que has creado
+    try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('Error en la solicitud');
+        const posts = await response.json();
+        displayPosts(posts);
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
 
         function displayPosts(posts) {
             const postsContainer = document.getElementById('posts');
