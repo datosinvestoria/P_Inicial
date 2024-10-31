@@ -10,7 +10,6 @@ def get_trending():
     pytrends.build_payload([query], geo='EC', timeframe='today 1-m')
     trending_data = pytrends.related_queries()[query]['top']
 
-    # Formatea los datos para enviarlos al frontend
     results = [
         {'title': row['query'], 'value': row['value']}
         for _, row in trending_data.iterrows()
