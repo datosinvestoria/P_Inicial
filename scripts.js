@@ -53,35 +53,4 @@ async function loadFeed() {
 // Cargar el feed al cargar la página
 loadFeed();
 
-  // Reemplaza 'YOUR_API_KEY' con tu clave de API de Google.
-    const apiKey = 'YOUR_API_KEY';
-    const query = 'elecciones';
-    
-    async function fetchTrendingData() {
-      try {
-        const response = await fetch(https://www.googleapis.com/trends/v1beta/trending?query=${query}&apiKey=${apiKey});
-        if (!response.ok) {
-          throw new Error('Error al obtener datos');
-        }
-        
-        const data = await response.json();
-        displayTrendingData(data);
-      } catch (error) {
-        document.getElementById('trending-results').innerText = 'No se pudieron cargar los resultados de tendencias.';
-        console.error(error);
-      }
-    }
-
-    function displayTrendingData(data) {
-      const trendingContainer = document.getElementById('trending-results');
-      trendingContainer.innerHTML = '';
-
-      data.forEach((item, index) => {
-        const trendItem = document.createElement('div');
-        trendItem.innerHTML = <h3>${index + 1}. ${item.title}</h3><p>${item.description}</p>;
-        trendingContainer.appendChild(trendItem);
-      });
-    }
-
-    // Llamar a la función para obtener los datos.
-    fetchTrendingData();
+ 
