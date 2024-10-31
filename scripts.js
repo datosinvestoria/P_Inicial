@@ -1,4 +1,4 @@
-const accessToken = 'EAAWaHSQO6b4BOy404PZBrNgTlQr69KizmNJQ4AZAaxLFSvtIcf0GOPj61IDWQ42wSAqqDt9PAZAVR5C0whMM1bEyioi8PncVenZBabGFca74Eh5pxJz6A7i3iJUVIjT76QOWABR0gmxppLDXZBNR79kpHBiWtv5r5jjdsoPpRawTrXMeN5ZCLkPuspD8ZC0i3c8soyZBGV1TZCtdGmI4ZD'; // Reemplaza con tu token de acceso
+const accessToken = ''; // Reemplaza con tu token de acceso
         const query = 'elecciones Ecuador';
         const url = `https://graph.facebook.com/v14.0/search?q=${encodeURIComponent(query)}&type=post&access_token=${accessToken}`;
  
