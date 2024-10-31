@@ -1,0 +1,3 @@
+fastapi
+pytrends
+uvicorn  # Si estás utilizando FastAPI
