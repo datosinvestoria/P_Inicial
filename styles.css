@@ -38,7 +38,7 @@
             margin-top: 40px;
             padding: 16px;
         }
-.logo img {
+.navbar .logo img {
     width: 100%; /* Ajusta el tamaño según tus necesidades */
     height: auto;
 }
