@@ -57,7 +57,7 @@ async function loadFeed() {
                 // Descripción del artículo
                 const description = document.createElement("p");
                 description.textContent = item.description
-                    ? item.description.slice(0, 100) + "..." // Mostrar solo los primeros 100 caracteres
+                    ? item.description.slice(0, 150) + "..." // Mostrar solo los primeros 150 caracteres
                     : "No hay descripción disponible.";
                 itemContainer.appendChild(description);
 
