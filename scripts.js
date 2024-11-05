@@ -11,6 +11,7 @@ async function loadFeed() {
 
     try {
         const allItems = [];
+        const addedLinks = new Set(); // Para rastrear artículos ya agregados
 
         // Realizar solicitudes a todas las URLs de feeds
         for (const url of feedUrls) {
@@ -29,34 +30,40 @@ async function loadFeed() {
 
         if (filteredItems.length > 0) {
             filteredItems.slice(0, 5).forEach(item => {
-                const itemContainer = document.createElement("div");
-                itemContainer.className = "feed-item";
+                // Verifica si el enlace ya ha sido agregado
+                if (!addedLinks.has(item.link)) {
+                    const itemContainer = document.createElement("div");
+                    itemContainer.className = "feed-item";
 
-                // Obtener la imagen del artículo
-                let imgUrl = '';
-                if (item.enclosure && item.enclosure.url) {
-                    imgUrl = item.enclosure.url; // Usar la URL de la imagen del artículo
-                } else if (item.thumbnail) {
-                    imgUrl = item.thumbnail; // O usar una miniatura si está disponible
+                    // Obtener la imagen del artículo
+                    let imgUrl = '';
+                    if (item.enclosure && item.enclosure.url) {
+                        imgUrl = item.enclosure.url; // Usar la URL de la imagen del artículo
+                    } else if (item.thumbnail) {
+                        imgUrl = item.thumbnail; // O usar una miniatura si está disponible
+                    }
+
+                    // Mostrar la imagen del artículo, si está disponible
+                    if (imgUrl) {
+                        const img = document.createElement("img");
+                        img.src = imgUrl;
+                        img.className = "feed-image"; // Clase CSS para la imagen
+                        itemContainer.appendChild(img);
+                    }
+
+                    const title = document.createElement("h2");
+                    title.innerHTML = `<a href="${item.link}" target="_blank">${item.title}</a>`;
+                    itemContainer.appendChild(title);
+
+                    const description = document.createElement("p");
+                    description.textContent = item.description || "No hay descripción disponible.";
+                    itemContainer.appendChild(description);
+
+                    feedContainer.appendChild(itemContainer);
+
+                    // Agrega el enlace a la lista de artículos ya agregados
+                    addedLinks.add(item.link);
                 }
-
-                // Mostrar la imagen del artículo, si está disponible
-                if (imgUrl) {
-                    const img = document.createElement("img");
-                    img.src = imgUrl;
-                    img.className = "feed-image"; // Clase CSS para la imagen
-                    itemContainer.appendChild(img);
-                }
-
-                const title = document.createElement("h2");
-                title.innerHTML = `<a href="${item.link}" target="_blank">${item.title}</a>`;
-                itemContainer.appendChild(title);
-
-                const description = document.createElement("p");
-                description.textContent = item.description || "No hay descripción disponible.";
-                itemContainer.appendChild(description);
-
-                feedContainer.appendChild(itemContainer);
             });
         } else {
             feedContainer.innerHTML = "<p>No se encontraron artículos sobre elecciones 2025.</p>";
