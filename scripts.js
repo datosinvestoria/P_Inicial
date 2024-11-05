@@ -17,7 +17,7 @@ async function loadFeed() {
         }
 
         const feedContainer = document.getElementById("feed");
-        const keywords = ["crisis", "energética", "luz", "cortes", "energía", "feriado"]; // Palabras clave
+        const keywords = ["elecciones","candidatos","democracia"]; // Palabras clave
 
         // Filtrar los artículos según las palabras clave
         const filteredItems = allItems.filter(item =>
