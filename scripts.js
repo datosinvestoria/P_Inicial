@@ -17,7 +17,7 @@ async function loadFeed() {
         }
 
         const feedContainer = document.getElementById("feed");
-        const keywords = ["elecciones", "candidatos", "democracia"]; // Palabras clave
+        const keywords = ["elecciones", "China", "democracia"]; // Palabras clave
 
         // Filtrar los artículos según las palabras clave
         const filteredItems = allItems.filter(item =>
