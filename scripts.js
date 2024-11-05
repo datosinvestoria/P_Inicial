@@ -17,7 +17,7 @@ async function loadFeed() {
         }
 
         const feedContainer = document.getElementById("feed");
-        const keywords = ["elecciones","candidatos","democracia"]; // Palabras clave
+        const keywords = ["elecciones", "candidatos", "democracia"]; // Palabras clave
 
         // Filtrar los artículos según las palabras clave
         const filteredItems = allItems.filter(item =>
@@ -26,8 +26,10 @@ async function loadFeed() {
 
         if (filteredItems.length > 0) {
             filteredItems.slice(0, 5).forEach(item => {
-            const itemContainer = document.createElement("div");
-            itemContainer.className = "feed-item";
+                // Verifica si el enlace ya ha sido agregado
+                if (!addedLinks.has(item.link)) {
+                    const itemContainer = document.createElement("div");
+                    itemContainer.className = "feed-item";
 
                     // Obtener la imagen del artículo
                     let imgUrl = '';
@@ -69,8 +71,3 @@ async function loadFeed() {
 
 // Cargar el feed al cargar la página
 loadFeed();
-
-
-
-
- 
