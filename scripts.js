@@ -41,12 +41,12 @@ async function loadFeed() {
                 itemContainer.className = "feed-item";
 
                 // Imagen del artículo
-                if (item.image) {
-                    const img = document.createElement("img");
-                    img.src = item.image;
-                    img.alt = "Imagen del artículo";
-                    img.className = "feed-image";
-                    itemContainer.appendChild(img);
+                if (channelImageUrl) {
+                    const image = document.createElement("img");
+                    image.src = channelImageUrl; // Usamos la imagen del canal
+                    image.alt = item.title;
+                    image.className = "feed-image";
+                    itemContainer.appendChild(image);
                 }
 
                 // Título del artículo
