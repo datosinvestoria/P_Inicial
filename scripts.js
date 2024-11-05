@@ -9,38 +9,37 @@ async function loadFeed() {
         "https://api.rss2json.com/v1/api.json?rss_url=https://www.teleamazonas.com/feed/"
     ];
 
-    const allItems = [];
-    const feedContainer = document.getElementById("feed");
-    const keywords = ["crisis", "energética", "luz", "cortes", "energía", "feriado"]; // Palabras clave
-
     try {
+        const allItems = [];
+        let channelImageUrl = ''; // Variable para almacenar la URL de la imagen del canal
+
         // Realizar solicitudes a todas las URLs de feeds
         for (const url of feedUrls) {
-            try {
-                const response = await fetch(url);
-                if (!response.ok) throw new Error(`Error en la respuesta: ${response.status}`);
-                
-                const data = await response.json();
-                allItems.push(...data.items); // Combina los artículos
-            } catch (error) {
-                console.warn(`Error al cargar el feed de ${url}:`, error);
+            const response = await fetch(url);
+            const data = await response.json();
+
+            // Obtener la URL de la imagen del canal (si existe)
+            if (data.feed && data.feed.image) {
+                channelImageUrl = data.feed.image; // Suponiendo que 'image' contiene la URL
             }
+
+            allItems.push(...data.items); // Combina los artículos
         }
 
-        // Filtrar y ordenar los artículos
-        const filteredItems = allItems
-            .filter(item => 
-                keywords.some(keyword => item.title.toLowerCase().includes(keyword) || item.description.toLowerCase().includes(keyword))
-            )
-            .sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate)); // Ordenar por fecha, más recientes primero
+        const feedContainer = document.getElementById("feed");
+        const keywords = ["crisis","energética","luz","cortes","energía","feriado"]; // Palabras clave
 
-        // Mostrar los artículos filtrados
+        // Filtrar los artículos según las palabras clave
+        const filteredItems = allItems.filter(item => 
+            keywords.some(keyword => item.title.toLowerCase().includes(keyword) || item.description.toLowerCase().includes(keyword))
+        );
+
         if (filteredItems.length > 0) {
             filteredItems.slice(0, 5).forEach(item => {
                 const itemContainer = document.createElement("div");
                 itemContainer.className = "feed-item";
 
-                // Imagen del artículo
+                // Agregar la imagen del canal
                 if (channelImageUrl) {
                     const image = document.createElement("img");
                     image.src = channelImageUrl; // Usamos la imagen del canal
@@ -56,24 +55,22 @@ async function loadFeed() {
 
                 // Descripción del artículo
                 const description = document.createElement("p");
-                description.textContent = item.description
-                    ? item.description.slice(0, 150) + "..." // Mostrar solo los primeros 150 caracteres
-                    : "No hay descripción disponible.";
+                description.textContent = item.description || "No hay descripción disponible.";
                 itemContainer.appendChild(description);
 
                 feedContainer.appendChild(itemContainer);
             });
         } else {
-            feedContainer.innerHTML = "<p>No se encontraron artículos sobre las palabras clave.</p>";
+            feedContainer.innerHTML = "<p>No se encontraron artículos sobre elecciones 2025.</p>";
         }
     } catch (error) {
-        console.error("Error al cargar los feeds:", error);
-        feedContainer.innerHTML = "<p>Error al cargar los feeds. Por favor, intenta de nuevo más tarde.</p>";
+        console.error("Error al cargar el feed:", error);
     }
 }
 
 // Cargar el feed al cargar la página
 loadFeed();
+
 
 
 const query = 'elecciones';
