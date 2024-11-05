@@ -9,15 +9,21 @@ async function loadFeed() {
         const allItems = [];
         const addedLinks = new Set(); // Para rastrear artículos ya agregados
 
+        const feedContainer = document.getElementById("feed");
+        feedContainer.innerHTML = ""; // Limpiar contenido previo
+
         // Realizar solicitudes a todas las URLs de feeds
         for (const url of feedUrls) {
             const response = await fetch(url);
             const data = await response.json();
-            allItems.push(...data.items); // Combina los artículos
+            if (data.items) {
+                allItems.push(...data.items); // Combina los artículos
+            } else {
+                console.warn(`No se encontraron artículos en la URL: ${url}`);
+            }
         }
 
-        const feedContainer = document.getElementById("feed");
-        const keywords = ["elecciones", "China", "democracia"]; // Palabras clave
+        const keywords = ["elecciones", "candidatos", "democracia"]; // Palabras clave
 
         // Filtrar los artículos según las palabras clave
         const filteredItems = allItems.filter(item =>
