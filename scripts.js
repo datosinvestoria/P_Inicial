@@ -11,18 +11,11 @@ async function loadFeed() {
 
     try {
         const allItems = [];
-        let channelImageUrl = ''; // Variable para almacenar la URL de la imagen del canal
 
         // Realizar solicitudes a todas las URLs de feeds
         for (const url of feedUrls) {
             const response = await fetch(url);
             const data = await response.json();
-
-            // Obtener la URL de la imagen del canal (si existe)
-            if (data.feed && data.feed.image) {
-                channelImageUrl = data.feed.image; // Suponiendo que 'image' contiene la URL
-            }
-
             allItems.push(...data.items); // Combina los artículos
         }
 
@@ -39,21 +32,19 @@ async function loadFeed() {
                 const itemContainer = document.createElement("div");
                 itemContainer.className = "feed-item";
 
-                // Agregar la imagen del canal
-                if (channelImageUrl) {
-                    const image = document.createElement("img");
-                    image.src = channelImageUrl; // Usamos la imagen del canal
-                    image.alt = item.title;
-                    image.className = "feed-image";
-                    itemContainer.appendChild(image);
+                // Mostrar la imagen del artículo, si está disponible
+                const imgUrl = item.enclosure ? item.enclosure.link : ''; // Cambia según la estructura del feed
+                if (imgUrl) {
+                    const img = document.createElement("img");
+                    img.src = imgUrl;
+                    img.className = "feed-image"; // Clase CSS para la imagen
+                    itemContainer.appendChild(img);
                 }
 
-                // Título del artículo
                 const title = document.createElement("h2");
                 title.innerHTML = `<a href="${item.link}" target="_blank">${item.title}</a>`;
                 itemContainer.appendChild(title);
 
-                // Descripción del artículo
                 const description = document.createElement("p");
                 description.textContent = item.description || "No hay descripción disponible.";
                 itemContainer.appendChild(description);
