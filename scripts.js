@@ -30,10 +30,8 @@ async function loadFeed() {
 
         if (filteredItems.length > 0) {
             filteredItems.slice(0, 5).forEach(item => {
-                // Verifica si el enlace ya ha sido agregado
-                if (!addedLinks.has(item.link)) {
-                    const itemContainer = document.createElement("div");
-                    itemContainer.className = "feed-item";
+            const itemContainer = document.createElement("div");
+            itemContainer.className = "feed-item";
 
                     // Obtener la imagen del artículo
                     let imgUrl = '';
