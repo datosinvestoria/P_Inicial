@@ -34,19 +34,6 @@
 }
 
 /* Estilo del contenedor del feed en dos columnas */
-.feed-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: space-between; /* Asegura espacio entre las columnas */
-}
-
-#feed {
-    display: flex;
-    flex-direction: column;
-    flex: 1 1 45%; /* Cada columna ocupa el 45% del ancho */
-}
-
 .feed-item {
     border-bottom: 1px solid #ccc;
     padding: 10px 0;
@@ -72,13 +59,3 @@
     margin-top: 5px;
 }
 
-/* Responsivo: En pantallas más pequeñas, cambiar a una sola columna */
-@media (max-width: 768px) {
-    .feed-container {
-        flex-direction: column;
-    }
-
-    #feed {
-        flex: 1 1 100%; /* Cada columna ocupa el 100% en dispositivos pequeños */
-    }
-}
