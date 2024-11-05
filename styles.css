@@ -11,6 +11,11 @@
         font-size: 0.9em;
         color: #555;
     }
+    .feed-image {
+    width: 100px; /* Tamaño de la imagen */
+    height: auto;
+    border-radius: 5px;
+    }
 .navbar {
             background-color: #008000;
             color: white;
