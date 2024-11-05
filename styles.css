@@ -58,6 +58,7 @@
 
 
 
+//Comportamiento en dispostivos con pantallas pequeñas
 @media (max-width: 768px) {
     #feed {
         flex: 1 1 100%;
