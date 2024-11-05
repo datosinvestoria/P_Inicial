@@ -32,8 +32,8 @@ async function loadFeed() {
                 const itemContainer = document.createElement("div");
                 itemContainer.className = "feed-item";
 
-                // Mostrar la imagen del artículo, si está disponible
-                const imgUrl = item.enclosure ? item.enclosure.link : ''; // Cambia según la estructura del feed
+               // Mostrar la imagen del artículo, si está disponible
+                const imgUrl = item.enclosure ? item.enclosure.url : ''; // Cambiado para usar item.enclosure.url
                 if (imgUrl) {
                     const img = document.createElement("img");
                     img.src = imgUrl;
