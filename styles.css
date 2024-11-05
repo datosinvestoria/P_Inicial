@@ -24,10 +24,14 @@
             z-index: 1000;
         }
 .navbar a {
-            color: white;
-            text-decoration: none;
-            padding: 12px;
-        }
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    font-weight: bold; /* Hace el texto más llamativo */
+    border-radius: 5px; /* Bordes redondeados para un efecto de botón */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
+}
+
 
 .navbar a:hover {
             background-color:  #006600;
