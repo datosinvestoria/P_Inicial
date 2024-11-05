@@ -1,5 +1,5 @@
 <style>
-/*Estilo de la barra de navegación 
+/*Estilo de la barra de navegación */
 .navbar {
             background-color: #008000;
             color: white;
@@ -34,7 +34,7 @@
     height: auto;
 }
 
-/*Estilo del feed de noticias
+/*Estilo del feed de noticias*/
     .feed-item {
         border-bottom: 1px solid #ccc;
         padding: 10px 0;
@@ -56,7 +56,7 @@
 
 
 
-/*Comportamiento en dispostivos con pantallas pequeñas
+/*Comportamiento en dispostivos con pantallas pequeñas*/
 @media (max-width: 768px) {
     #feed {
         flex: 1 1 100%;
