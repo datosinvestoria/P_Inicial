@@ -52,7 +52,7 @@
     padding: 10px 0;
     display: flex;
     gap: 15px;
-    width: 100%; /* Cada artículo ocupa el ancho completo de su columna */
+    width: 50%; /* Cada artículo ocupa el ancho completo de su columna */
 }
 
 .feed-image {
