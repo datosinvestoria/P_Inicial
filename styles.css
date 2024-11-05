@@ -1,48 +1,49 @@
-<style>
-/*Estilo de la barra de navegación */
+/* Estilo de la barra de navegación */
 .navbar {
-            background-color: #008000;
-            color: white;
-            padding: 0px;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-        }
+    background-color: #008000;
+    color: white;
+    padding: 0px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
 .navbar a {
     color: white;
     text-decoration: none;
     padding: 10px;
-    font-weight: bold; /* Hace el texto más llamativo */
-    border-radius: 5px; /* Bordes redondeados para un efecto de botón */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 .navbar a:hover {
-            background-color:  #006600;
-        }
+    background-color: #006600;
+}
 
-        /* Estilo de margen para el contenido para que no quede debajo de la barra */
-        .content {
-            margin-top: 60px;
-            padding: 16px;
-        }
+/* Estilo de margen para el contenido para que no quede debajo de la barra */
+.content {
+    margin-top: 60px;
+    padding: 16px;
+}
 .navbar .logo img {
-    width: 150px; /* Ajusta el tamaño según tus necesidades */
+    width: 150px;
     height: auto;
 }
 
-/*Estilo del feed de noticias*/
-/* Contenedor del feed en dos columnas */
+/* Estilo del contenedor del feed en dos columnas */
 .feed-container {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    justify-content: space-between; /* Asegura espacio entre las columnas */
 }
 
 #feed {
+    display: flex;
+    flex-direction: column;
     flex: 1 1 45%; /* Cada columna ocupa el 45% del ancho */
 }
 
@@ -81,4 +82,3 @@
         flex: 1 1 100%; /* Cada columna ocupa el 100% en dispositivos pequeños */
     }
 }
-
