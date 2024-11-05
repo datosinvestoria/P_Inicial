@@ -26,7 +26,7 @@
 .navbar a {
             color: white;
             text-decoration: none;
-            padding: 14px;
+            padding: 12px;
         }
 
 .navbar a:hover {
@@ -35,10 +35,10 @@
 
         /* Estilo de margen para el contenido para que no quede debajo de la barra */
         .content {
-            margin-top: 60px;
+            margin-top: 80px;
             padding: 16px;
         }
 .navbar .logo img {
-    width: 150px; /* Ajusta el tamaño según tus necesidades */
+    width: 125px; /* Ajusta el tamaño según tus necesidades */
     height: auto;
 }
