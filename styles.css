@@ -1,4 +1,15 @@
 <style>
+.feed-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Espacio entre las columnas */
+}
+
+#feed {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 45%; /* Hace que cada columna ocupe el 45% del ancho, dejando espacio entre ellas */
+}
     .feed-item {
         border-bottom: 1px solid #ccc;
         padding: 10px 0;
@@ -16,6 +27,11 @@
     height: auto;
     border-radius: 5px;
     }
+@media (max-width: 768px) {
+    #feed {
+        flex: 1 1 100%;
+    }
+}
 .navbar {
             background-color: #008000;
             color: white;
