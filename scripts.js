@@ -5,7 +5,8 @@ async function loadFeed() {
     const feedUrls = [
         "https://api.rss2json.com/v1/api.json?rss_url=https://www.elcomercio.com/feed/",
         "https://api.rss2json.com/v1/api.json?rss_url=https://www.lahora.com.ec/feed/",
-        "https://api.rss2json.com/v1/api.json?rss_url=https://www.teleamazonas.com/feed/"
+        "https://api.rss2json.com/v1/api.json?rss_url=https://www.teleamazonas.com/feed/",
+        "https://api.rss2json.com/v1/api.json?rss_url=https://cnnespanol.cnn.com/feed/"
     ];
 
     try {
