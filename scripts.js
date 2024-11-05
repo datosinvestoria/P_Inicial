@@ -20,10 +20,10 @@ async function loadFeed() {
         }
 
         const feedContainer = document.getElementById("feed");
-        const keywords = ["crisis","energética","luz","cortes","energía","feriado"]; // Palabras clave
+        const keywords = ["crisis", "energética", "luz", "cortes", "energía", "feriado"]; // Palabras clave
 
         // Filtrar los artículos según las palabras clave
-        const filteredItems = allItems.filter(item => 
+        const filteredItems = allItems.filter(item =>
             keywords.some(keyword => item.title.toLowerCase().includes(keyword) || item.description.toLowerCase().includes(keyword))
         );
 
@@ -32,7 +32,7 @@ async function loadFeed() {
                 const itemContainer = document.createElement("div");
                 itemContainer.className = "feed-item";
 
-               // Obtener la imagen del artículo
+                // Obtener la imagen del artículo
                 let imgUrl = '';
                 if (item.enclosure && item.enclosure.url) {
                     imgUrl = item.enclosure.url; // Usar la URL de la imagen del artículo
@@ -47,6 +47,7 @@ async function loadFeed() {
                     img.className = "feed-image"; // Clase CSS para la imagen
                     itemContainer.appendChild(img);
                 }
+
                 const title = document.createElement("h2");
                 title.innerHTML = `<a href="${item.link}" target="_blank">${item.title}</a>`;
                 itemContainer.appendChild(title);
