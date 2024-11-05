@@ -41,9 +41,9 @@ async function loadFeed() {
                 itemContainer.className = "feed-item";
 
                 // Imagen del artículo
-                if (item.thumbnail) {
+                if (item.image) {
                     const img = document.createElement("img");
-                    img.src = item.thumbnail;
+                    img.src = item.image;
                     img.alt = "Imagen del artículo";
                     img.className = "feed-image";
                     itemContainer.appendChild(img);
