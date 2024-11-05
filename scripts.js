@@ -1,3 +1,6 @@
+window.onload = async function() {
+    await loadFeed();
+};
 async function loadFeed() {
     const feedUrls = [
         "https://api.rss2json.com/v1/api.json?rss_url=https://www.elcomercio.com/feed/",
