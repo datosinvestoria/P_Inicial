@@ -35,7 +35,7 @@ async function loadFeed() {
         );
 
         if (filteredItems.length > 0) {
-            filteredItems.slice(0,3).forEach(item => {
+            filteredItems.slice(0,5).forEach(item => {
                 // Verifica si el enlace ya ha sido agregado
                 if (!addedLinks.has(item.link)) {
                     const itemContainer = document.createElement("div");
