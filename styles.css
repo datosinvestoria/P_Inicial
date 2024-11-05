@@ -23,13 +23,13 @@
             align-items: center;
             z-index: 1000;
         }
-        .navbar a {
+.navbar a {
             color: white;
             text-decoration: none;
             padding: 10px;
         }
 
-        .navbar a:hover {
+.navbar a:hover {
             background-color: #008000;
         }
 
