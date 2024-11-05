@@ -35,51 +35,50 @@
 }
 
 /*Estilo del feed de noticias*/
+/* Contenedor del feed en dos columnas */
 .feed-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px; /* Espacio entre las columnas */
+    gap: 20px;
 }
+
 #feed {
-    display: flex;
-    flex-direction: column;
-    flex: 1 1 45%; /* Hace que cada columna ocupe el 45% del ancho, dejando espacio entre ellas */
+    flex: 1 1 45%; /* Cada columna ocupa el 45% del ancho */
 }
+
 .feed-item {
     border-bottom: 1px solid #ccc;
     padding: 10px 0;
     display: flex;
-    gap: 15px; /* Espacio entre la imagen y el contenido */
+    gap: 15px;
+    width: 100%; /* Cada artículo ocupa el ancho completo de su columna */
 }
+
 .feed-image {
     width: 100px;
     height: auto;
     border-radius: 5px;
 }
+
 .feed-item h2 {
     font-size: 1.2em;
     margin: 0;
 }
+
 .feed-item p {
     font-size: 0.9em;
     color: #555;
     margin-top: 5px;
 }
 
-
-
 /* Responsivo: En pantallas más pequeñas, cambiar a una sola columna */
 @media (max-width: 768px) {
+    .feed-container {
+        flex-direction: column;
+    }
+
     #feed {
-        flex: 1 1 100%;
+        flex: 1 1 100%; /* Cada columna ocupa el 100% en dispositivos pequeños */
     }
 }
 
-
-
-/*Comportamiento en dispostivos con pantallas pequeñas*/
-@media (max-width: 768px) {
-    #feed {
-        flex: 1 1 100%;
-    }
-}
