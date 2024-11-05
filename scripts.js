@@ -32,15 +32,21 @@ async function loadFeed() {
                 const itemContainer = document.createElement("div");
                 itemContainer.className = "feed-item";
 
-               // Mostrar la imagen del artículo, si está disponible
-                const imgUrl = item.enclosure ? item.enclosure.url : ''; // Cambiado para usar item.enclosure.url
+               // Obtener la imagen del artículo
+                let imgUrl = '';
+                if (item.enclosure && item.enclosure.url) {
+                    imgUrl = item.enclosure.url; // Usar la URL de la imagen del artículo
+                } else if (item.thumbnail) {
+                    imgUrl = item.thumbnail; // O usar una miniatura si está disponible
+                }
+
+                // Mostrar la imagen del artículo, si está disponible
                 if (imgUrl) {
                     const img = document.createElement("img");
                     img.src = imgUrl;
                     img.className = "feed-image"; // Clase CSS para la imagen
                     itemContainer.appendChild(img);
                 }
-
                 const title = document.createElement("h2");
                 title.innerHTML = `<a href="${item.link}" target="_blank">${item.title}</a>`;
                 itemContainer.appendChild(title);
