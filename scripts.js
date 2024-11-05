@@ -79,5 +79,4 @@ async function loadFeed() {
     }
 }
 
-// Cargar el feed al cargar la página
-loadFeed();
+
