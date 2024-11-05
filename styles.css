@@ -36,9 +36,10 @@
         /* Estilo de margen para el contenido para que no quede debajo de la barra */
         .content {
             margin-top: 40px;
+             margin-right: 40px;
             padding: 16px;
         }
 .navbar .logo img {
-    width: 100%; /* Ajusta el tamaño según tus necesidades */
+    width: 150; /* Ajusta el tamaño según tus necesidades */
     height: auto;
 }
