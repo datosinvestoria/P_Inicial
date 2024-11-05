@@ -1,12 +1,12 @@
 window.onload = async function() {
     await loadFeed();
 };
+
 async function loadFeed() {
     const feedUrls = [
         "https://api.rss2json.com/v1/api.json?rss_url=https://www.elcomercio.com/feed/",
         "https://api.rss2json.com/v1/api.json?rss_url=https://www.lahora.com.ec/feed/",
-        "https://api.rss2json.com/v1/api.json?rss_url=https://www.teleamazonas.com/feed/",
-        "https://api.rss2json.com/v1/api.json?rss_url=https://cnnespanol.cnn.com/feed/"
+        "https://api.rss2json.com/v1/api.json?rss_url=https://www.teleamazonas.com/feed/"
     ];
 
     try {
@@ -27,7 +27,7 @@ async function loadFeed() {
             }
         }
 
-        const keywords = ["elecciones", "candidatos", "democracia"]; // Palabras clave
+        const keywords = ["elecciones", "candidatos", "democracia","Ecuador"]; // Palabras clave
 
         // Filtrar los artículos según las palabras clave
         const filteredItems = allItems.filter(item =>
@@ -35,7 +35,7 @@ async function loadFeed() {
         );
 
         if (filteredItems.length > 0) {
-            filteredItems.slice(0,5).forEach(item => {
+            filteredItems.slice(0, 5).forEach(item => {
                 // Verifica si el enlace ya ha sido agregado
                 if (!addedLinks.has(item.link)) {
                     const itemContainer = document.createElement("div");
@@ -61,8 +61,12 @@ async function loadFeed() {
                     title.innerHTML = `<a href="${item.link}" target="_blank">${item.title}</a>`;
                     itemContainer.appendChild(title);
 
+                    // Extraer solo el texto entre <p> de la descripción
+                    const descriptionMatch = item.description.match(/<p>(.*?)<\/p>/);
+                    const descriptionText = descriptionMatch ? descriptionMatch[1] : "No hay descripción disponible.";
+                    
                     const description = document.createElement("p");
-                    description.textContent = item.description || "No hay descripción disponible.";
+                    description.textContent = descriptionText; // Usa solo el texto entre <p>
                     itemContainer.appendChild(description);
 
                     feedContainer.appendChild(itemContainer);
@@ -78,5 +82,7 @@ async function loadFeed() {
         console.error("Error al cargar el feed:", error);
     }
 }
+
+
 
 
